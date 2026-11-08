@@ -1,0 +1,11 @@
+#Go
+*.exe
+coverage.out
+
+# Node / frontend
+node_modules/
+dist/
+
+# Editor / OS
+.vscode/
+.DS_Store
