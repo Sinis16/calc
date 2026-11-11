@@ -1,0 +1,154 @@
+.calculator {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 32px 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 0 40px var(--glow);
+}
+
+.calculator h1 {
+  margin: 0 0 24px;
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.field input,
+.field select {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--surface-input);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.field input:hover,
+.field select:hover {
+  border-color: var(--border-hover);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(163, 240, 212, 0.2);
+}
+
+.field select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-text);
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(163, 240, 212, 0.25);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.result {
+  margin: 24px 0 0;
+  padding: 16px;
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--surface-input);
+  border-radius: 12px;
+  word-break: break-all;
+}
+
+.result strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.error {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  font-size: 0.9375rem;
+  color: var(--error-text);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: 10px;
+}
+
+@media (max-width: 480px) {
+  .calculator {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .calculator {
+    max-width: 560px;
+  }
+
+  .calculator form {
+    display: grid;
+    grid-template-columns: 1fr minmax(150px, auto) 1fr;
+    column-gap: 12px;
+    align-items: end;
+  }
+
+  /* Square root has no operand B: use two columns instead of three */
+  .calculator form:not(:has(#operand-b)) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .calculator form button {
+    grid-column: 1 / -1;
+  }
+}

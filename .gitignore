@@ -1,6 +1,7 @@
 #Go
-*.exe
+coverage/
 coverage.out
+*.exe
 
 # Node / frontend
 node_modules/
@@ -9,3 +10,5 @@ dist/
 # Editor / OS
 .vscode/
 .DS_Store
+
+

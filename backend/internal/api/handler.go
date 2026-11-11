@@ -1,3 +1,5 @@
+// Receives the JSON, converts to struct, validates, calls calulator, and gives back resulting JSON
+
 package api
 
 import (
@@ -32,6 +34,8 @@ var binaryOps = map[string]func(a, b float64) (float64, error){
 
 func HandleCalculate(w http.ResponseWriter, r *http.Request) {
 	var req calculateRequest
+	
+	//Here is decoded the JSON body into req
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
@@ -50,7 +54,7 @@ func HandleCalculate(w http.ResponseWriter, r *http.Request) {
 	} else {
 		op, ok := binaryOps[req.Operation]
 		if !ok {
-			writeError(w, http.StatusBadRequest, "missing operand a")
+			writeError(w, http.StatusBadRequest, "unsupported operation: "+req.Operation)
 			return
 		}
 		if req.B == nil {
